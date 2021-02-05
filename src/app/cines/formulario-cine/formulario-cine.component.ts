@@ -12,6 +12,7 @@ export class FormularioCineComponent implements OnInit {
 
   form: FormGroup
   @Input() modelo: cineCreacionDTO
+  @Input() errores: string[] = []
   @Output() guardarCambios: EventEmitter<cineCreacionDTO> = new EventEmitter<cineCreacionDTO>()
 
   coordenadaInicial: Coordenada[] = []

@@ -11,9 +11,10 @@ import { generoCreacionDTO } from '../genero';
 export class FormularioGeneroComponent implements OnInit {
 
   form: FormGroup;
-  @Output() submit: EventEmitter<generoCreacionDTO> = new EventEmitter<generoCreacionDTO>()
+  @Output() onSubmit: EventEmitter<generoCreacionDTO> = new EventEmitter<generoCreacionDTO>()
 
   @Input() modelo: generoCreacionDTO
+  @Input() errores: string[] = []
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -31,7 +32,7 @@ export class FormularioGeneroComponent implements OnInit {
   }
 
   guardarCambios() {
-    this.submit.emit(this.form.value)
+    this.onSubmit.emit(this.form.value)
   }
 
   obtenerErrorCampoNombre(): string {

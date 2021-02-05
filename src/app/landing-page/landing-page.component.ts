@@ -26,6 +26,8 @@ export class LandingPageComponent implements OnInit {
       precio: 300.99,
       poster: 'https://thaniaperea.com/wp-content/uploads/2019/04/Mohana.png'
     }]
+
+    this.peliculasProximosEstrenos = []
   }
 
 }

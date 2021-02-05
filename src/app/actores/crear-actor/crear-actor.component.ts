@@ -1,3 +1,6 @@
+import { parsearErroresAPI } from 'src/app/utilidades/utilidades';
+import { Router } from '@angular/router';
+import { ActoresService } from './../actores.service';
 import { Component, OnInit } from '@angular/core';
 import { actorCreacionDTO } from '../actor';
 
@@ -8,12 +11,17 @@ import { actorCreacionDTO } from '../actor';
 })
 export class CrearActorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actoresService: ActoresService, private router: Router) { }
+
+  errores = []
 
   ngOnInit(): void {
   }
 
   guardarCambios(actor: actorCreacionDTO) {
-    console.log(actor);
+    this.actoresService.Crear(actor)
+    .subscribe(() => {
+      this.router.navigate(['/actores'])
+    }, errores => this.errores = parsearErroresAPI(errores))
   }
 }

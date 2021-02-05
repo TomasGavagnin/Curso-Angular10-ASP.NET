@@ -12,6 +12,9 @@ export class FormularioActoresComponent implements OnInit {
   form: FormGroup
   @Output() OnSubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>()
   @Input() modelo: actorDTO
+  @Input() errores: string[] = []
+
+  imagenCambiada = false
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -29,6 +32,7 @@ export class FormularioActoresComponent implements OnInit {
   }
 
   archivoSeleccionado(file: File) {
+    this.imagenCambiada = true
     this.form.get('foto').setValue(file)
   }
 
@@ -37,6 +41,11 @@ export class FormularioActoresComponent implements OnInit {
   }
 
   onSubmit(): void {
+
+    if (!this.imagenCambiada) {
+      this.form.patchValue({ 'foto': null})
+    }
+
     this.OnSubmit.emit(this.form.value)
   }
 }
